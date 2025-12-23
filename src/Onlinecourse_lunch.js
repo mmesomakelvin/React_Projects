@@ -32,7 +32,8 @@ export default function OnlineCourseLunch({ width = 1080, height = 1080 }) {
         height: `${height}px`,
         fontFamily: 'Montserrat, sans-serif',
         position: 'relative',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        backgroundColor: '#0F3238'
       }}
     >
       {/* Base background */}
@@ -141,12 +142,12 @@ export default function OnlineCourseLunch({ width = 1080, height = 1080 }) {
             style={{
               padding: `${8 * scale}px ${20 * scale}px`,
               borderRadius: `${30 * scale}px`,
-              backgroundColor: 'rgba(1, 105, 56, 0.4)',
+              backgroundColor: 'rgba(1, 105, 56, 0.6)',
               border: '1px solid rgba(94, 178, 41, 0.3)'
             }}
           >
             <span style={{ fontSize: `${fontSize.pill}px`, fontWeight: 600, color: '#FFFFFF', letterSpacing: '0.05em' }}>
-              E-Learning Platform Beta
+              E-Learning Platform • Early Access Waitlist
             </span>
           </div>
         </div>
@@ -177,6 +178,15 @@ export default function OnlineCourseLunch({ width = 1080, height = 1080 }) {
             opacity: 0.9
           }}>
             is the first course on our new e-learning platform
+          </p>
+          <p style={{ 
+            fontSize: `${fontSize.subheading}px`, 
+            fontWeight: 600, 
+            color: '#F2C94C',
+            marginTop: `${6 * scale}px`,
+            letterSpacing: '0.02em'
+          }}>
+            Join the waitlist to be first in line
           </p>
         </div>
 
@@ -287,6 +297,109 @@ export default function OnlineCourseLunch({ width = 1080, height = 1080 }) {
               ACCESS
             </h2>
           </div>
+
+          {/* Feature cards */}
+          <div 
+            style={{
+              position: 'absolute',
+              bottom: `${height * 0.08}px`,
+              left: `${width * 0.06}px`,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: `${10 * scale}px`,
+              width: `${280 * scale}px`
+            }}
+          >
+            {[
+              { title: 'Live office hours', accent: '#5EB229' },
+              { title: 'Interactive practice labs', accent: '#F2C94C' },
+              { title: 'Career-ready projects', accent: '#8ED1FC' }
+            ].map((item, idx) => (
+              <div 
+                key={item.title}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: `${10 * scale}px`,
+                  padding: `${10 * scale}px ${12 * scale}px`,
+                  borderRadius: `${14 * scale}px`,
+                  background: 'rgba(255, 255, 255, 0.06)',
+                  border: `1px solid rgba(255, 255, 255, ${idx === 1 ? 0.18 : 0.1})`,
+                  boxShadow: '0 8px 20px rgba(0,0,0,0.25)',
+                  backdropFilter: 'blur(4px)'
+                }}
+              >
+                <span style={{ 
+                  width: `${10 * scale}px`, 
+                  height: `${10 * scale}px`, 
+                  borderRadius: '50%', 
+                  backgroundColor: item.accent,
+                  boxShadow: `0 0 0 6px rgba(255,255,255,0.04), 0 0 20px ${item.accent}60`
+                }} />
+                <span style={{ 
+                  fontSize: `${fontSize.cta}px`, 
+                  fontWeight: 600, 
+                  color: '#FFFFFF' 
+                }}>
+                  {item.title}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {/* Image placeholder */}
+          <div
+            style={{
+              position: 'absolute',
+              right: `${width * 0.08}px`,
+              bottom: `${height * 0.05}px`,
+              width: `${340 * scale}px`,
+              height: `${220 * scale}px`,
+              borderRadius: `${18 * scale}px`,
+              border: `2px dashed rgba(255,255,255,0.4)`,
+              background: 'linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))',
+              boxShadow: '0 12px 30px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.08)',
+              backdropFilter: 'blur(4px)',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              overflow: 'hidden'
+            }}
+          >
+            <div style={{ 
+              width: '100%', 
+              height: `${60 * scale}px`, 
+              background: 'linear-gradient(90deg, rgba(94,178,41,0.28), transparent)', 
+              position: 'absolute', 
+              top: 0 
+            }} />
+            <p style={{ 
+              fontSize: `${fontSize.heading}px`, 
+              fontWeight: 800, 
+              color: '#FFFFFF',
+              margin: 0,
+              letterSpacing: '-0.02em'
+            }}>
+              + Image
+            </p>
+            <p style={{ 
+              fontSize: `${fontSize.cta}px`, 
+              fontWeight: 600, 
+              color: 'rgba(255,255,255,0.75)',
+              marginTop: `${6 * scale}px`
+            }}>
+              Drop course visual here
+            </p>
+            <p style={{ 
+              fontSize: `${fontSize.small}px`, 
+              fontWeight: 500, 
+              color: 'rgba(255,255,255,0.6)',
+              marginTop: `${4 * scale}px`
+            }}>
+              Keeps your design balanced
+            </p>
+          </div>
         </div>
 
         {/* BOTTOM CTA SECTION - 30% */}
@@ -297,20 +410,20 @@ export default function OnlineCourseLunch({ width = 1080, height = 1080 }) {
           flexDirection: 'column',
           justifyContent: 'center'
         }}>
-          <p style={{ fontSize: `${fontSize.cta}px`, fontWeight: 600, color: '#FFFFFF', margin: 0 }}>
-            We're launching our e-learning platform — come help us test it for free.
+          <p style={{ fontSize: `${fontSize.cta}px`, fontWeight: 700, color: '#FFFFFF', margin: 0, letterSpacing: '0.01em' }}>
+            We’re launching our e-learning platform soon — join the waitlist for priority access.
           </p>
-          <p style={{ fontSize: `${fontSize.ctaSub}px`, fontWeight: 500, color: 'rgba(255,255,255,0.75)', lineHeight: 1.4, marginTop: `${6 * scale}px` }}>
-            Get <span style={{ color: '#5EB229', fontWeight: 700 }}>free access</span> to the <span style={{ color: '#F2C94C', fontWeight: 700 }}>'Financial Instruments'</span> course and <span style={{ color: '#5EB229', fontWeight: 700 }}>earn a certificate</span> when you complete it.
+          <p style={{ fontSize: `${fontSize.ctaSub}px`, fontWeight: 500, color: 'rgba(255,255,255,0.85)', lineHeight: 1.5, marginTop: `${6 * scale}px` }}>
+            Get <span style={{ color: '#5EB229', fontWeight: 700 }}>free entry</span> into the <span style={{ color: '#F2C94C', fontWeight: 800 }}>'Financial Instruments'</span> course, <span style={{ color: '#5EB229', fontWeight: 700 }}>earn a certificate</span> when you complete it, and secure bonus perks as an early supporter.
           </p>
-          <p style={{ fontSize: `${fontSize.small}px`, fontWeight: 500, color: 'rgba(255,255,255,0.55)', marginTop: `${6 * scale}px` }}>
+          <p style={{ fontSize: `${fontSize.small}px`, fontWeight: 500, color: 'rgba(255,255,255,0.65)', marginTop: `${6 * scale}px` }}>
             Perfect for beginners and professionals looking to break into or grow in finance.
           </p>
           
           {/* Register Button */}
           <div style={{ marginTop: `${12 * scale}px` }}>
             <span style={{ fontSize: `${fontSize.register}px`, fontWeight: 600, color: '#FFFFFF', display: 'block', marginBottom: `${8 * scale}px` }}>
-              Register here:
+              Save your spot on the waitlist:
             </span>
             <div 
               style={{
@@ -322,8 +435,16 @@ export default function OnlineCourseLunch({ width = 1080, height = 1080 }) {
               }}
             >
               <span style={{ fontSize: `${fontSize.button}px`, fontWeight: 700, color: '#FFFFFF' }}>
-                bit.ly/financeinst
+                bit.ly/finance-waitlist
               </span>
+            </div>
+            <div style={{ marginTop: `${10 * scale}px`, display: 'flex', justifyContent: 'center', gap: `${12 * scale}px` }}>
+              <div style={{ padding: `${8 * scale}px ${12 * scale}px`, borderRadius: `${12 * scale}px`, backgroundColor: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)' }}>
+                <span style={{ fontSize: `${fontSize.small}px`, color: '#C3E2E5', fontWeight: 600 }}>Early bird perks</span>
+              </div>
+              <div style={{ padding: `${8 * scale}px ${12 * scale}px`, borderRadius: `${12 * scale}px`, backgroundColor: 'rgba(1,105,56,0.45)', border: '1px solid rgba(94,178,41,0.2)' }}>
+                <span style={{ fontSize: `${fontSize.small}px`, color: '#FFFFFF', fontWeight: 700 }}>Seats limited</span>
+              </div>
             </div>
           </div>
         </div>
