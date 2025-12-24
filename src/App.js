@@ -1,29 +1,116 @@
 import React, { useRef, useState } from "react";
 import { toPng, toSvg } from "html-to-image";
 import { saveAs } from "file-saver";
-import Ment_Judge_cert from "./Ment_Judge_cert";
+import OnlineCourseLunch from "./Onlinecourse_lunch";
 
 const SIZE_OPTIONS = [
-  { label: 'Instagram Square', width: 1080, height: 1080 },
-  { label: 'Instagram Portrait', width: 1080, height: 1350 },
-  { label: 'Instagram Story / Reel', width: 1080, height: 1920 },
-  { label: 'Facebook Post', width: 1200, height: 630 },
-  { label: 'Facebook Story', width: 1080, height: 1920 },
-  { label: 'Twitter / X Post', width: 1600, height: 900 },
-  { label: 'LinkedIn Post', width: 1200, height: 627 },
-  { label: 'Pinterest Pin', width: 1000, height: 1500 },
-  { label: 'YouTube Thumbnail', width: 1280, height: 720 },
-  { label: 'WhatsApp Status', width: 1080, height: 1920 },
+  { label: "Instagram Square", width: 1080, height: 1080 },
+  { label: "Instagram Portrait", width: 1080, height: 1350 },
+  { label: "Instagram Story / Reel", width: 1080, height: 1920 },
+  { label: "Facebook Post", width: 1200, height: 630 },
+  { label: "Facebook Story", width: 1080, height: 1920 },
+  { label: "Twitter / X Post", width: 1600, height: 900 },
+  { label: "LinkedIn Post", width: 1200, height: 627 },
+  { label: "Pinterest Pin", width: 1000, height: 1500 },
+  { label: "YouTube Thumbnail", width: 1280, height: 720 },
+  { label: "WhatsApp Status", width: 1080, height: 1920 },
 ];
+
+function OnlineCourseLaunchFrame({ width, height }) {
+  const scale = Math.min(width / 1080, height / 1350);
+  const stripeFont = Math.round(26 * scale);
+  const logoSize = Math.round(64 * scale);
+  const borderRadius = Math.round(36 * scale);
+  const stripes = Array.from({ length: 8 });
+
+  return (
+    <div
+      style={{
+        width: `${width}px`,
+        height: `${height}px`,
+        position: "relative",
+        overflow: "hidden",
+        borderRadius: `${borderRadius}px`,
+        background: "#154B54",
+        fontFamily: "Montserrat, sans-serif",
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "#154B54",
+        }}
+      />
+
+      <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
+        {stripes.map((_, index) => (
+          <div
+            key={`stripe-${index}`}
+            style={{
+              position: "absolute",
+              top: `${index * 15 - 10}%`,
+              left: "-10%",
+              width: "120%",
+              whiteSpace: "nowrap",
+              fontSize: `${stripeFont}px`,
+              color: "#1A6B75",
+              opacity: 0.4,
+              transform: "rotate(-12deg)",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+            }}
+          >
+            <span style={{ margin: `0 ${24 * scale}px` }}>
+              ★ COMING SOON
+            </span>
+            <span style={{ margin: `0 ${24 * scale}px` }}>
+              ★ COMING SOON
+            </span>
+            <span style={{ margin: `0 ${24 * scale}px` }}>
+              ★ COMING SOON
+            </span>
+            <span style={{ margin: `0 ${24 * scale}px` }}>
+              ★ COMING SOON
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <div
+        style={{
+          position: "absolute",
+          top: `${32 * scale}px`,
+          right: `${32 * scale}px`,
+          width: `${logoSize}px`,
+          height: `${logoSize}px`,
+          borderRadius: "50%",
+          background: "rgba(255, 255, 255, 0.08)",
+          border: "2px solid rgba(255, 255, 255, 0.3)",
+          backdropFilter: "blur(6px)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div
+          style={{
+            width: `${Math.round(logoSize * 0.62)}px`,
+            height: `${Math.round(logoSize * 0.62)}px`,
+            borderRadius: "50%",
+            border: "4px solid rgba(255, 255, 255, 0.75)",
+          }}
+        />
+      </div>
+
+      <OnlineCourseLunch width={width} height={height} />
+    </div>
+  );
+}
 
 export default function App() {
   const designRef = useRef(null);
-  const DesignComponent = Data_School_Discount_flier;
-  const designComponentName =
-    DesignComponent.displayName || DesignComponent.name || 'design';
-  const isCertificate = designComponentName.toLowerCase().endsWith('_cert');
-  const sizeOptions = isCertificate ? CERTIFICATE_SIZE_OPTIONS : FLIER_SIZE_OPTIONS;
-  const [selectedSize, setSelectedSize] = useState(sizeOptions[0]);
+  const [selectedSize, setSelectedSize] = useState(SIZE_OPTIONS[0]);
   const [isExporting, setIsExporting] = useState(false);
 
   const exportAsPng = async () => {
@@ -37,10 +124,12 @@ export default function App() {
         });
         saveAs(
           dataUrl,
-          `data-school-flier-${selectedSize.label.replace(/\s+/g, '-').toLowerCase()}-${selectedSize.width}x${selectedSize.height}.png`
+          `onlinecourse-launch-${selectedSize.label
+            .replace(/\s+/g, "-")
+            .toLowerCase()}-${selectedSize.width}x${selectedSize.height}.png`
         );
       } catch (error) {
-        console.error('Export failed:', error);
+        console.error("Export failed:", error);
       }
       setIsExporting(false);
     }
@@ -56,10 +145,12 @@ export default function App() {
         });
         saveAs(
           dataUrl,
-          `data-school-flier-${selectedSize.label.replace(/\s+/g, '-').toLowerCase()}-${selectedSize.width}x${selectedSize.height}.svg`
+          `onlinecourse-launch-${selectedSize.label
+            .replace(/\s+/g, "-")
+            .toLowerCase()}-${selectedSize.width}x${selectedSize.height}.svg`
         );
       } catch (error) {
-        console.error('Export failed:', error);
+        console.error("Export failed:", error);
       }
       setIsExporting(false);
     }
@@ -73,7 +164,7 @@ export default function App() {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EduBridge Data School Flier - ${selectedSize.label}</title>
+  <title>EliteBridge Learning Flier - ${selectedSize.label}</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -91,12 +182,13 @@ export default function App() {
   ${designRef.current.innerHTML}
 </body>
 </html>`;
-      const blob = new Blob([htmlContent], { type: 'text/html' });
-      saveAs(
-        blob,
-        `data-school-flier-${selectedSize.label.replace(/\s+/g, '-').toLowerCase()}-${selectedSize.width}x${selectedSize.height}.html`
-      );
-    }
+    const blob = new Blob([htmlContent], { type: "text/html" });
+    saveAs(
+      blob,
+      `onlinecourse-launch-${selectedSize.label
+        .replace(/\s+/g, "-")
+        .toLowerCase()}-${selectedSize.width}x${selectedSize.height}.html`
+    );
   };
 
   // Preview scaling
@@ -121,9 +213,11 @@ export default function App() {
             fontFamily: "Montserrat, sans-serif",
           }}
         >
-          EduBridge Academy
+          EliteBridge Learning
         </h1>
-        <p style={{ color: '#888', fontSize: '14px' }}>Data School Discount Flier Designer</p>
+        <p style={{ color: "#888", fontSize: "14px" }}>
+          Online Course Launch Flier Designer
+        </p>
       </div>
 
       {/* Controls */}
@@ -152,7 +246,7 @@ export default function App() {
             fontFamily: "Montserrat, sans-serif",
           }}
         >
-          {sizeOptions.map((size, index) => (
+          {SIZE_OPTIONS.map((size, index) => (
             <option key={index} value={index}>
               {size.label} ({size.width}×{size.height})
             </option>
@@ -216,7 +310,14 @@ export default function App() {
       </div>
 
       {/* Size Info */}
-      <div style={{ textAlign: "center", marginBottom: "20px", color: "#888", fontFamily: "Montserrat, sans-serif" }}>
+      <div
+        style={{
+          textAlign: "center",
+          marginBottom: "20px",
+          color: "#888",
+          fontFamily: "Montserrat, sans-serif",
+        }}
+      >
         Current size:{" "}
         <span style={{ color: "#F2C94C", fontWeight: 700 }}>
           {selectedSize.width} × {selectedSize.height}
@@ -241,13 +342,9 @@ export default function App() {
             overflow: "hidden",
           }}
         >
-          <Data_School_Discount_flier
+          <OnlineCourseLaunchFrame
             width={selectedSize.width}
             height={selectedSize.height}
-            // You can override content here anytime:
-            // recipient="Jane Doe"
-            // program="EduBridge Academy • AUSC 2025"
-            // certId="CERT ID: EBA-AUSC-2025-0007"
           />
         </div>
       </div>
@@ -265,7 +362,8 @@ export default function App() {
         }}
       >
         <p>
-          Brand Colors: Teal #154B54 • Green #5EB229 • Dark Green #016938 • Gold #F2C94C • Deep Blue #040084
+          Brand Colors: Deep Green #154B54 • Pine #1A6B75 • Accent #5EB229 • Gold
+          #FBBF24
         </p>
       </div>
     </div>
