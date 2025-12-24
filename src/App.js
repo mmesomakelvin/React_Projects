@@ -342,7 +342,7 @@ export default function App() {
             overflow: "hidden",
           }}
         >
-          <OnlineCourseLaunchFrame
+          <Data_School_Discount_flier
             width={selectedSize.width}
             height={selectedSize.height}
           />
@@ -362,8 +362,7 @@ export default function App() {
         }}
       >
         <p>
-          Brand Colors: Deep Green #154B54 • Pine #1A6B75 • Accent #5EB229 • Gold
-          #FBBF24
+          Brand Colors: Teal #154B54 • Green #5EB229 • Dark Green #016938 • Gold #F2C94C • Deep Blue #040084
         </p>
       </div>
     </div>
